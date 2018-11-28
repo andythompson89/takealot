@@ -13,7 +13,7 @@ namespace TakealotApi.Api
 
         public ApiClient(string baseUrl)
         {
-            this._baseUrl = baseUrl;
+            _baseUrl = baseUrl;
         }
 
         public ApiResult<T> GET<T>(string apiEndPoint, params Parameter[] parameters) where T : new()
@@ -21,7 +21,7 @@ namespace TakealotApi.Api
             var request = new RestRequest(apiEndPoint, Method.GET);
             request.Parameters.AddRange(parameters);
 
-            var response = this.Execute<T>(request);
+            var response = Execute<T>(request);
             return response;
         }
 
@@ -34,7 +34,7 @@ namespace TakealotApi.Api
                 request.AddObject(objectToUpdate);
             }
 
-            var response = this.Execute<T>(request);
+            var response = Execute<T>(request);
             return response;
         }
 
@@ -47,7 +47,7 @@ namespace TakealotApi.Api
                 request.AddObject(objectToUpdate);
             }
 
-            var response = this.Execute<T>(request);
+            var response = Execute<T>(request);
             return response;
         }
 
@@ -60,7 +60,7 @@ namespace TakealotApi.Api
                 request.AddObject(objectToUpdate);
             }
 
-            var response = this.Execute<T>(request);
+            var response = Execute<T>(request);
             return response;
         }
 
@@ -72,9 +72,7 @@ namespace TakealotApi.Api
 
             if (response.ErrorException != null)
             {
-                var exception = new Exception(response.ErrorException.Message);
-
-                return new ApiResult<T>(HttpStatusCode.InternalServerError, exception);
+                return new ApiResult<T>(HttpStatusCode.InternalServerError, response.ErrorException);
             }
 
             return new ApiResult<T>(response.StatusCode, response.Data);

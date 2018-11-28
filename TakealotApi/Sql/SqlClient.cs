@@ -7,6 +7,7 @@ namespace TakealotApi.Sql
 {
     public class SqlClient : ISqlClient
     {
+        // example
         public async void Write()
         {
             var str = Environment.GetEnvironmentVariable("sqldb_connection");
