@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text;
 
-namespace TakealotApi
+namespace TakealotApi.Api
 {
-    public class ApiClient
+    public class ApiClient : IApiClient
     {
         private readonly string _baseUrl;
 
@@ -74,10 +74,10 @@ namespace TakealotApi
             {
                 var exception = new Exception(response.ErrorException.Message);
 
-                return new ApiResult<T>(HttpStatusCode.InternalServerError, exception, response.ResponseUri.AbsoluteUri);
+                return new ApiResult<T>(HttpStatusCode.InternalServerError, exception);
             }
 
-            return new ApiResult<T>(response.StatusCode, response.Data, response.ResponseUri.AbsoluteUri);
+            return new ApiResult<T>(response.StatusCode, response.Data);
         }
     }
 }

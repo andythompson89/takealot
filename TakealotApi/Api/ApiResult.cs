@@ -3,27 +3,23 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text;
 
-namespace TakealotApi
+namespace TakealotApi.Api
 {
     public class ApiResult<T>
     {
-        public ApiResult(HttpStatusCode httpStatusCode, T data, string requestUrl)
+        public ApiResult(HttpStatusCode httpStatusCode, T data)
         {
             HttpStatusCode = httpStatusCode;
             Data = data;
-            RequestUrl = requestUrl;
         }
 
-        public ApiResult(HttpStatusCode httpStatusCode, Exception exception, string requestUrl)
+        public ApiResult(HttpStatusCode httpStatusCode, Exception exception)
         {
             HttpStatusCode = httpStatusCode;
             Exception = exception;
-            RequestUrl = requestUrl;
         }
 
         public HttpStatusCode HttpStatusCode { get; set; }
-
-        public string RequestUrl { get; set; }
 
         public T Data { get; set; }
 
